@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="//fav.farm/📚" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gemini E-Book Creator!</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <main id="app">
+      <section id="loader">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2.5"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"
+          />
+        </svg>
+      </section>
+      <h1>📚 E-book Generator!</h1>
+      <div>
+        <form>
+          <input
+            required
+            autocomplete="false"
+            type="text"
+            name="book_motive"
+            id="book_motive"
+            placeholder="Enter your book aim..."
+          />
+          <br />
+          <button id="submitBTN" type="submit">Create your book!!</button>
+        </form>
+      </div>
+    </main>
+    <section id="console">
+      <h1>💻 Logs</h1>
+      <div>
+        <!-- logs  -->
+      </div>
+    </section>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

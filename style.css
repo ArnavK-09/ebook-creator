@@ -1,0 +1,159 @@
+body,
+html {
+  margin: 0;
+  background-color: wheat;
+  font-family: "Jua", sans-serif !important;
+  font-weight: 400;
+  font-style: normal;
+  display: grid;
+  place-items: center;
+  overflow-x: hidden;
+  padding: 1rem;
+}
+
+* {
+  ::-webkit-scrollbar {
+    opacity: 0;
+  }
+}
+
+::-moz-selection {
+  color: wheat;
+  background: black;
+}
+
+::selection {
+  color: wheat;
+  background: black;
+}
+
+main {
+  padding-top: 4rem;
+}
+
+h1 {
+  text-align: center;
+  text-decoration: underline;
+  text-underline-offset: 7px;
+  text-decoration-style: wavy;
+}
+
+form {
+  margin-top: 4rem;
+  max-width: 100%;
+  display: grid;
+  place-items: center;
+  user-select: none;
+
+  input {
+    width: 100%;
+  }
+
+  button {
+    cursor: pointer;
+    font-family: "Jua", sans-serif !important;
+    font-weight: 400;
+    font-style: normal;
+    background-color: black;
+    color: white;
+    box-shadow:
+      0 1px 3px 0 rgba(0, 0, 0, 0.1),
+      0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    padding: 1rem 1rem;
+    border-radius: 1rem;
+    font-size: 1.3rem;
+    line-height: 1.3rem;
+  }
+}
+
+input {
+  font-family: "Jua", sans-serif !important;
+  font-weight: 400;
+  font-style: normal;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  font-size: 1.3rem;
+  line-height: 1.3rem;
+  color: black;
+  outline: none;
+  border-radius: 1rem;
+  border: 0.2px;
+  border-color: black;
+  border-style: solid;
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+hr {
+  background-color: black;
+  height: 1px;
+  border-radius: 9999px;
+  opacity: 0.9;
+}
+
+#loader {
+  backdrop-filter: blur(2px);
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-color: rgba(245, 245, 245, 0.315);
+  display: none;
+  place-items: center;
+  width: 100vw;
+  height: 100vh;
+
+  svg {
+    aspect-ratio: 1 / 1;
+    width: 5rem;
+    color: #000000;
+    animation: spin 2s linear infinite;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(1.2);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+#console {
+  z-index: 20;
+  margin-top: 3rem;
+  opacity: 0;
+  display: grid;
+  place-items: center;
+}
+
+#console:has(p) {
+  opacity: 1;
+}
+
+#console div {
+  background: #0000003a;
+  border-radius: 1rem;
+  max-width: 65%;
+  padding: 0.2rem 0.5rem;
+  border: 0.2px;
+  max-height: 25vh;
+  overflow-y: scroll;
+  overflow-wrap: break-word;
+  overflow-x: hidden;
+  border-color: black;
+
+  span {
+    color: wheat;
+    background-color: black;
+    padding: 1px 5px;
+  }
+}
