@@ -102,7 +102,7 @@ export default class GeminiAI extends AIProvider {
 		const title = metaData[0] ?? "Book Title";
 		const introduction = metaData[1] ?? "Book Introducion";
 		const conclusion = metaData[2] ?? "Book Conclusion";
-		let book: string = await this.fetchTemplate("src/templates/index.html");
+		let book: string = await this.fetchTemplate("template.html");
 
 		// Adding basic meta values to book
 		book = book.replaceAll(bookPlaceholders.title, title);
