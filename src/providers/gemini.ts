@@ -9,10 +9,10 @@ import {
   GoogleGenerativeAI,
 } from "@google/generative-ai";
 import {
-  SEPERATOR,
+  baseGenPrompt,
   bookPlaceholders,
   initPrompts,
-  metaPrompts,
+  metaPromps,
 } from "../constants";
 import { downloadLinkFromText } from "../main";
 
@@ -27,7 +27,6 @@ export default class GeminiAI extends AIProvider {
   #chat?: ChatSession;
   #pagesNo: number = 1;
   #pages: Array<string> = [];
-  #pageGenPrompt: string = `Give me content for {{title}} page`;
 
   // init
   constructor(book_motive: string, apikey: string) {
@@ -86,7 +85,7 @@ export default class GeminiAI extends AIProvider {
     const _ = Array(pagesNo).fill(pagesNo);
     _.forEach(async (_, i) => {
       const content = this.sendAIData(
-        this.#pageGenPrompt.replace("{{title}}", `Section ${i + 1}`),
+        baseGenPrompt.gemini.replace("{{i}}", `${i + 1}`),
       );
       this.#pages.push((await content).toString());
     });
@@ -99,12 +98,16 @@ export default class GeminiAI extends AIProvider {
     // Basic variables for book rendering
     this.logger.info("Rendering your e-book into HTML Format explicitly...");
     this.logUI("Rendering your e-book into HTML Format explicitly...");
-    const metaData = (await this.sendAIData(metaPrompts.gemini)).split(
-      SEPERATOR,
-    );
-    const title: string = metaData[0] ?? "Book Title";
-    const introduction: string = metaData[1] ?? "Book Introducion";
-    const conclusion: string = metaData[2] ?? "Book Conclusion";
+
+    // meta
+    const title: string =
+      (await this.sendAIData(metaPromps.gemini.title)) ?? "Book Title";
+    const introduction: string =
+      (await this.sendAIData(metaPromps.gemini.introduction)) ??
+      "Book Introducion";
+    const conclusion: string =
+      (await this.sendAIData(metaPromps.gemini.conclusion)) ??
+      "Book Conclusion";
     let book: string = await this.fetchTemplate("ebook-creator/template.html");
 
     // Adding basic meta values to book
