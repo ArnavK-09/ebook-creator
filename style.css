@@ -103,7 +103,7 @@ hr {
   display: none;
   place-items: center;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
 
   svg {
     aspect-ratio: 1 / 1;
@@ -155,5 +155,35 @@ hr {
     color: wheat;
     background-color: black;
     padding: 1px 5px;
+  }
+}
+
+#download {
+  place-items: center;
+  margin: 2rem 0rem;
+  display: none;
+
+  ul {
+    color: black;
+    text-align-last: center;
+    list-style-type: none;
+    text-decoration: none;
+  }
+
+  button {
+    background-color: #131212;
+    color: white;
+    font-size: large;
+    font-family: "Jua", sans-serif !important;
+    font-weight: 500;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    font-style: normal;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    padding: 1rem 1rem;
+    filter: contrast(1) opacity(0.99);
+    border-radius: 1rem;
+    font-size: 1.3rem;
+    line-height: 1.3rem;
   }
 }
