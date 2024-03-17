@@ -10,7 +10,6 @@ import GeminiAI from "./providers/gemini";
 const form = document.getElementsByTagName("form")[0] as HTMLFormElement;
 const input = document.getElementById("book_motive") as HTMLInputElement;
 const apikey = document.getElementById("api_key") as HTMLInputElement;
-const submit_btn = document.getElementById("submitBTN") as HTMLButtonElement;
 const download_link = document.getElementById(
   "download_link",
 ) as HTMLAnchorElement;
