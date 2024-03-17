@@ -30,7 +30,7 @@ export default class GeminiAI extends AIProvider {
   #pageGenPrompt: string = `Give me content for {{title}} page`;
 
   // init
-  constructor(book_motive: string) {
+  constructor(book_motive: string, apikey: string) {
     // extends
     super("GEMINI");
 
@@ -41,7 +41,7 @@ export default class GeminiAI extends AIProvider {
     }
 
     // creating gemini instance
-    this.#ai = new GoogleGenerativeAI(import.meta.env.API_KEY);
+    this.#ai = new GoogleGenerativeAI(apikey);
     this.#model = this.#ai.getGenerativeModel({ model: "gemini-pro" });
     this.#book_motive = book_motive;
     this.logger.success(`Connected To Gemini Pro....`);
@@ -71,7 +71,9 @@ export default class GeminiAI extends AIProvider {
       "start",
     );
     this.#chat = this.#model.startChat();
-    this.sendAIData(initPrompts.gemini(this.#book_motive));
+    this.#pages.push(
+      await this.sendAIData(initPrompts.gemini(this.#book_motive)),
+    );
     this.logger.debug("Configured Generative AI Prompt...");
     this.logUI("Configured Generative AI Prompt...", "debug");
     this.continueAddingPages();
@@ -100,15 +102,21 @@ export default class GeminiAI extends AIProvider {
     const metaData = (await this.sendAIData(metaPrompts.gemini)).split(
       SEPERATOR,
     );
-    const title = metaData[0] ?? "Book Title";
-    const introduction = metaData[1] ?? "Book Introducion";
-    const conclusion = metaData[2] ?? "Book Conclusion";
+    const title: string = metaData[0] ?? "Book Title";
+    const introduction: string = metaData[1] ?? "Book Introducion";
+    const conclusion: string = metaData[2] ?? "Book Conclusion";
     let book: string = await this.fetchTemplate("ebook-creator/template.html");
 
     // Adding basic meta values to book
-    book = book.replaceAll(bookPlaceholders.title, title);
-    book = book.replaceAll(bookPlaceholders.introduction, introduction);
-    book = book.replaceAll(bookPlaceholders.conclusion, conclusion);
+    book = book.replaceAll(bookPlaceholders.title, await marked.parse(title));
+    book = book.replaceAll(
+      bookPlaceholders.introduction,
+      await marked.parse(introduction as string),
+    );
+    book = book.replaceAll(
+      bookPlaceholders.conclusion,
+      await marked.parse(conclusion),
+    );
 
     // appending pages content
     this.logger.start("Appending content of your book into e-book format...");

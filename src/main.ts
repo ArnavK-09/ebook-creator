@@ -9,6 +9,7 @@ import GeminiAI from "./providers/gemini";
  */
 const form = document.getElementsByTagName("form")[0] as HTMLFormElement;
 const input = document.getElementById("book_motive") as HTMLInputElement;
+const apikey = document.getElementById("api_key") as HTMLInputElement;
 const submit_btn = document.getElementById("submitBTN") as HTMLButtonElement;
 const download_link = document.getElementById(
   "download_link",
@@ -22,7 +23,7 @@ const createEBOOK = async (event: SubmitEvent | MouseEvent) => {
   event.preventDefault();
   if (input.value.trim().length === 0) return;
   toggleLoading();
-  const ai = new GeminiAI(input.value);
+  const ai = new GeminiAI(input.value, apikey.value);
   await ai
     .startup()
     .then(async () => await ai.renderBook())
@@ -37,7 +38,6 @@ const createEBOOK = async (event: SubmitEvent | MouseEvent) => {
  * Appending Event Listeners
  */
 form.addEventListener("submit", createEBOOK);
-submit_btn.addEventListener("click", createEBOOK);
 
 /**
  * Appends download link of text from sring
