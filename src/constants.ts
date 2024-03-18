@@ -1,10 +1,9 @@
 /**
- * Prompts for Gen AI
+ * Prompts for Gen AI @TODO merge providers prompt
  */
 
 interface BasePrompt {
-  gemini: string;
-  default?: string;
+  gemini: string; 
 }
 
 export const SEPERATOR = `|||`;

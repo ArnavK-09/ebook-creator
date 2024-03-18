@@ -19,13 +19,13 @@ import { downloadLinkFromText } from "../main";
 /**
  * Gemini Gen AI Provider
  */
-export default class GeminiAI extends AIProvider {
+export default class extends AIProvider {
   // vars
   #model: GenerativeModel;
   #ai: GoogleGenerativeAI;
   #book_motive: string = "E-book";
   #chat?: ChatSession;
-  #pagesNo: number = 1;
+  #pagesNo: number = 5;
   #pages: Array<string> = [];
 
   // init
